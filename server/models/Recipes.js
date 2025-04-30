@@ -10,7 +10,7 @@ const mongoose = require('mongoose');const recipeSchema = new mongoose.Schema({
    },
    user: {
     type : mongoose.Schema.Types.ObjectId,
-    refL : 'User',
+    ref : 'User',
     required: true
    }
 }, { timestamps: true }); 

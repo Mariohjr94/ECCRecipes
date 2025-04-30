@@ -10,7 +10,7 @@ export const createRecipe = async (req, res) => {
 
         const { userId, title, ingredients, instructions, category } = req.body;
 
-        if (!userId || title || ingredients || category) {
+        if (!userId || !title || !ingredients || !category) {
             console.log("Missing info in request body");
         return res
         .status(400)
@@ -26,7 +26,7 @@ export const createRecipe = async (req, res) => {
              console.log("User found:", user);
 
         const newRecipe = new Recipe({
-            userId,
+            user: userId,
             title,
             ingredients,
             instructions,
@@ -39,10 +39,11 @@ export const createRecipe = async (req, res) => {
 
     console.log("Recipe saved successfully");
 
-    const recipes = await Recipe.find();
+    const recipes = await Recipe.find().populate("user").populate("category");
+
     res.status(201).json(recipes);
     } catch (error) {
-        console.error("Error creating recipe:", err);
-        res.status(500).json({ message: err.message, stack: err.stack });
+        console.error("Error creating recipe:", error);
+        res.status(500).json({ message: err.message, stack: error.stack });
     }
 }
