@@ -31,12 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "client/dist")));
 
 // Backend routes
-const authRoutes = require("./auth");
 const recipeRoutes = require("./api/recipes");
 const categoryRoutes = require("./api/categories");
 const freezerItemsRoutes = require("./api/freezerItems");
 
-app.use("/auth", authRoutes);
+
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/categories" ,categoryRoutes);
 app.use("/api/freezer-items", freezerItemsRoutes);
