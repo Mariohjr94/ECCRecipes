@@ -16,12 +16,12 @@ export const register = async (req, res) => {
     const newUser = new User({
         username,
         email,
-        password
+        password: passwordHash, 
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser)
     } catch (error) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: error.message });
     }
 };
 
@@ -36,8 +36,9 @@ export const login = async (req, res) => {
         if ( !isMatch) return res.status(400).json({msg: 'Invalid credencials'});
 
         const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET);
-        delete user.password;
+        
+        const { password: _, ...userData } = user._doc; 
     } catch (error) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({ error: error.message });
     }
 }
