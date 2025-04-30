@@ -5,6 +5,7 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const helmet = require("helmet")
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 require('dotenv').config();
 
