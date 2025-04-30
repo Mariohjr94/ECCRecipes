@@ -41,12 +41,8 @@ export const createRecipe = async (req, res) => {
 
     const recipes = await Recipe.find();
     res.status(201).json(recipes);
-  } catch (err) {
-    console.error("Error creating post:", err);
-    res.status(500).json({ message: err.message, stack: err.stack });
-  }
-};
     } catch (error) {
-        
+        console.error("Error creating recipe:", err);
+        res.status(500).json({ message: err.message, stack: err.stack });
     }
 }
