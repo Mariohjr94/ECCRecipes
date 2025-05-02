@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET all freezer categories
-router.get("/categories", async (req, res) => {
+router.get("/:categories", async (req, res) => {
   try {
     const categories = await FreezerCategory.find();
     res.json(categories);

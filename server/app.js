@@ -31,9 +31,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "client/dist")));
 
 // Backend routes
-const recipeRoutes = require("./api/recipes");
-const categoryRoutes = require("./api/categories");
-const freezerItemsRoutes = require("./api/freezerItems");
+const recipeRoutes = require("./controllers/recipes");
+const categoryRoutes = require("./controllers/categories");
+const freezerItemsRoutes = require("./controllers/freezerItems");
 
 
 app.use("/api/recipes", recipeRoutes);
