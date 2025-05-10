@@ -16,7 +16,13 @@ exports.register = async (req, res) => {
     });
 
     const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
+
+    const token = jwt.sign({ id: savedUser._id }, process.env.JWT_SECRET)
+
+    //Don't return the hashed password
+    const { password: _, ...userData } = savedUser._doc;
+
+    res.status(201).json({ token, user: userData });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
