@@ -27,8 +27,11 @@ app.use(express.urlencoded({ extended: true }));
 const authRoutes = require("./routes/authRoutes");
 const freezerItemRoutes = require("./routes/freezerItemRoutes");
 const freezerCategoryRoutes = require("./routes/freezerCategories");
+const userRoutes = require("./routes/userRoutes");
+
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 app.use("/api/freezer-items", freezerItemRoutes);
 app.use("/api/freezer-categories", freezerCategoryRoutes);
 
